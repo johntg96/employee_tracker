@@ -10,16 +10,16 @@ VALUES  ("Management"),               -- 1
         ("Research and Development"), -- 7
         ("Engineering");              -- 8
 
-INSERT INTO role (title, salary, department)
+INSERT INTO occupation (title, salary, department_id)
 VALUES  ("Director", 1000000, 1),         -- 1
         ("Software Engineer", 85000, 8),  -- 2
         ("Janitor", 19000, 4),            -- 3
         ("Historian", 90000, 7),          -- 4
         ("Accountant", 84000, 5),         -- 5
-        ("Master Inspector", 55000, 2);   -- 6
-        ("Supervisor", 85500, 1)          -- 7
+        ("Master Inspector", 55000, 2),   -- 6
+        ("Supervisor", 85500, 1);         -- 7
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, occupation_id, department_id)
 VALUES  ("Rob", "Rogers", 1, NULL), -- 1
         ("Mary", "Jade", 4, 1),     -- 2
         ("Joe", "Blue", 6, 1),      -- 3
