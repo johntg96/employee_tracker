@@ -1,7 +1,14 @@
 const inquirer = require("inquirer");
 const connection = require("./config/connection");
-const { listAllDepartments, listAllOccupations, listAllEmployees } = require("./lib/queries");
 const { displayData } = require("./lib/displays");
+const { listAllDepartments, 
+        listAllOccupations,
+        listAllEmployees,
+        addDepartment,
+        addOccupation,
+        updateEmployeeOccupation,
+        addEmployee
+      } = require("./lib/queries");
 
 /*
   There are a lot of menu items presented to users in this app. The only real way you cam manage them 
@@ -19,12 +26,12 @@ function start(){
       name: "option", 
       choices: [
         "List All Departments",
-        "List All Roles",
+        "List All Roles (occupations)",
         "List All Employees",
         "Add Department",
-        "Add Role",
+        "Add Role (occupation)",
         "Add Employee",
-        "Update Employee Role"
+        "Update Employee Role (occupation)"
       ]
     },
   ])
@@ -56,17 +63,33 @@ function start(){
         break;
 
       // add a department
-
+      case "Add Department":
+        // addDepartment(newDepartment)
+        addDepartment().then(() => {
+        start();
+        });
 
       // add a role
-
+      case "Add Role (occupation":
+        // addOccupation(title, salary, department_id)
+        addOccupation().then(() => {
+        start();
+        });
 
       // add an employee
-
+      case "Add Employee":
+        // addEmployee(firstName, lastName, occupation_id, department_id)
+        addEmployee().then(() => {
+        start();
+        });
 
       // update an employee's role
+      case "Update Employee Role (occupation)":
+        // updateEmployeeOccutation(employeeId, occupationId)
+        updateEmployeeOccupation().then(() => {
+        start();
+        });
 
-      
 
       default:
         start();
