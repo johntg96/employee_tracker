@@ -14,7 +14,7 @@ CREATE TABLE department (
 );
 
 -- Create the position table.
-CREATE TABLE position (
+CREATE TABLE occupation (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(30),
   salary DECIMAL,
@@ -27,8 +27,8 @@ CREATE TABLE employee (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30),
   last_name VARCHAR(30),
-  position_id INT,
+  occupation_id INT,
   department_id INT DEFAULT NULL,
-  FOREIGN KEY (position_id) REFERENCES position(id),
+  FOREIGN KEY (occupation_id) REFERENCES occupation(id),
   FOREIGN KEY (department_id) REFERENCES department(id)
 );
