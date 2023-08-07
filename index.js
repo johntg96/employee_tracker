@@ -192,8 +192,7 @@ function promptForEmployeeDetails() {
   });
 }
 
-// TO-DO (partially complete):
-// *  get input details for updating an employee's role (occupation)
+// get input details for updating an employee's role (occupation)
 function promptForUpdatingEmployeeOccupation() {
   getEmployeeNames()
   .then((employeeNames) => {
