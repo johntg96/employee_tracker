@@ -170,7 +170,7 @@ function promptForEmployeeDetails() {
     {
       type: 'input',
       message: 'Enter the ID# of the role (occupation) of new employee:',
-      name: 'departmentId'
+      name: 'occupationId'
     },
     {
       type: 'input',
@@ -178,11 +178,11 @@ function promptForEmployeeDetails() {
       name: 'managerId'
     },
   ]).then(async (userInput) => {
-    const { employeeFirstName, employeeLastName, occupationId,  departmentId } = userInput;
+    const { employeeFirstName, employeeLastName, occupationId,  managerId } = userInput;
 
     try {
       // function addEmployee(firstName, lastName, occupation_id, department_id)
-      await addEmployee(employeeFirstName, employeeLastName, occupationId, departmentId);
+      await addEmployee(employeeFirstName, employeeLastName, occupationId, managerId);
       outputOrangeText(`\nNew employee "${employeeFirstName} ${employeeLastName}" added to the database successfully!\n`);
       start();
     } catch (error) {
