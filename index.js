@@ -33,7 +33,7 @@ function start(){
         "Add Employee",
         "Update Employee Role (occupation)"
       ]
-    },
+    }
   ])
   .then( response => {
     switch( response.option ){
@@ -70,23 +70,21 @@ function start(){
 
       // add a role (occupation)
       case "Add Role (occupation)":
-        // Prompt the user for occupation details
+        // prompt the user for occupation details
         promptForOccupationDetails();
         break;
 
       // add an employee
       case "Add Employee":
-        // addEmployee(firstName, lastName, occupation_id, department_id)
+        // prompt the user for employee details
         promptForEmployeeDetails();
         break;
 
       // update an employee's role (occupation)
       case "Update Employee Role (occupation)":
-        // updateEmployeeOccutation(employeeId, occupationId)
-        updateEmployeeOccupation().then(() => {
-        start();
-        });
-
+        // prompt the user for details to update employee occupation
+        promptForUpdatingEmployeeOccupation();
+        break;
 
       default:
         start();
@@ -139,7 +137,7 @@ function promptForOccupationDetails() {
 
     try {
       await addOccupation(occupationTitle, salary, departmentId);
-      outputCyanText(`\nNew role "${occupationTitle}" data added to the database successfully!\n`);
+      outputCyanText(`\nNew role "${occupationTitle}" added to the database successfully!\n`);
       start();
     } catch (error) {
       console.error(error);
@@ -177,7 +175,7 @@ function promptForEmployeeDetails() {
     try {
       // function addEmployee(firstName, lastName, occupation_id, department_id)
       await addEmployee(employeeFirstName, employeeLastName, occupationId, departmentId);
-      outputCyanText(`\nNew employee "${employeeFirstName} ${employeeLastName}" data added to the database successfully!\n`);
+      outputCyanText(`\nNew employee "${employeeFirstName} ${employeeLastName}" added to the database successfully!\n`);
       start();
     } catch (error) {
       console.error(error);
@@ -186,10 +184,27 @@ function promptForEmployeeDetails() {
   });
 }
 
-// TO-DO:
+// TO-DO (partially complete):
 // *  get input details for updating an employee's role (occupation)
 function promptForUpdatingEmployeeOccupation() {
-
+  inquirer.prompt([
+    {
+      type: 'list',
+      message: 'Choose an employee to update from the list below:',
+      name: 'employeeList',
+      choices: [] // write code for retrieving all employee names to list here
+    }
+  ]).then(async (userChoice) => {
+    try {
+      // function updateEmployeeOccupation(employeeId, occupationId)
+      await updateEmployeeOccupation(userChoice);
+      outputCyanText(`\nEmployee "${employeeFirstName} ${employeeLastName}" occupation information updated!\n`);
+      start();
+    } catch (error) {
+      console.error(error);
+      start();
+    }
+  });
 }
 
 start();
