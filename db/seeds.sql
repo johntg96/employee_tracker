@@ -20,10 +20,10 @@ VALUES  ("Director", 1000000, 1),         -- 1
         ("Supervisor", 85500, 1);         -- 7
 
 INSERT INTO employee (first_name, last_name, occupation_id, department_id)
-VALUES  ("Rob", "Rogers", 1, NULL), -- 1
+VALUES  ("Rob", "Rogers", 1, 1), -- 1
         ("Mary", "Jade", 4, 1),     -- 2
         ("Joe", "Blue", 6, 1),      -- 3
-        ("John", "Doe", 2, NULL),   -- 4
+        ("John", "Doe", 2, 6),   -- 4
         ("Sarah", "Smith", 3, 2),   -- 5
         ("Jeremy", "Dublin", 7, 1), -- 6
         ("Jake", "Porter", 3, 6);   -- 7

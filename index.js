@@ -8,6 +8,7 @@ const { listAllDepartments,
         addDepartment,
         addOccupation,
         updateEmployeeOccupation,
+        getEmployeeNames,
         addEmployee
       } = require("./lib/queries");
 
@@ -31,7 +32,8 @@ function start(){
         "Add Department",
         "Add Role (occupation)",
         "Add Employee",
-        "Update Employee Role (occupation)"
+        "Update Employee Role (occupation)",
+        `\x1b[31mExit\x1b[0m` // this changes the text color to red
       ]
     }
   ])
@@ -85,6 +87,10 @@ function start(){
         // prompt the user for details to update employee occupation
         promptForUpdatingEmployeeOccupation();
         break;
+
+      // exit the script
+      case `\x1b[31mExit\x1b[0m`:
+        process.exit(0);
 
       default:
         start();
@@ -187,23 +193,66 @@ function promptForEmployeeDetails() {
 // TO-DO (partially complete):
 // *  get input details for updating an employee's role (occupation)
 function promptForUpdatingEmployeeOccupation() {
-  inquirer.prompt([
-    {
-      type: 'list',
-      message: 'Choose an employee to update from the list below:',
-      name: 'employeeList',
-      choices: [] // write code for retrieving all employee names to list here
-    }
-  ]).then(async (userChoice) => {
-    try {
-      // function updateEmployeeOccupation(employeeId, occupationId)
-      await updateEmployeeOccupation(userChoice);
-      outputCyanText(`\nEmployee "${employeeFirstName} ${employeeLastName}" occupation information updated!\n`);
+  getEmployeeNames()
+  .then((employeeNames) => {
+    console.log('Employee Names:', employeeNames);
+    if (!employeeNames || employeeNames.length === 0) {
+      console.log("No employees found. Nothing to update.");
       start();
-    } catch (error) {
-      console.error(error);
-      start();
+      return;
     }
+
+    // This populates the choices array for the following inquirer prompt.
+    // The data is nested so that's why index 0 is needed here:
+    const choices = employeeNames[0].map((employee) => {
+      // console.log('Employee:', employee);
+      // console.log('Employee ID:', employee.id);
+      // console.log('First Name:', employee.first_name);
+      // console.log('Last Name:', employee.last_name);
+      // console.log('Occupation ID:', employee.occupation_id);
+      return {
+        name: `${employee.first_name} ${employee.last_name}`,
+        value: {
+          employeeId: employee.id,
+          occupationId: employee.occupation_id,
+        },
+      };
+    });
+
+    inquirer
+      .prompt([
+        {
+          type: 'list',
+          message: 'Choose an employee to update from the list below:',
+          name: 'employeeId',
+          choices: choices,
+        },
+        {
+          type: 'list',
+          message: 'Select new role (occupation) from the list below:',
+          name: 'occupationId',
+          choices: ["1: Director","2: Software Engineer","3: Janitor","4: Historian","5: Accountant","6: Master Inspector","7: Supervisor"]
+        },
+      ])
+      .then(async (userChoice) => {
+        try {
+          // console.log(JSON.stringify(userChoice));
+          console.log(`\nCurrent Employee ID #: ${userChoice.employeeId.employeeId}`);
+          console.log(`New Role (occupation): ${userChoice.occupationId}`);
+
+          // The new role is added here, notice the second arg is being parsed for int from choices array:
+          await updateEmployeeOccupation(userChoice.employeeId.employeeId, parseInt(Array.from(userChoice.occupationId)[0]));
+          outputCyanText(`\nEmployee role (occupation) updated!\n`);
+          start();
+        } catch (error) {
+          console.error(error);
+          start();
+        }
+      });
+  })
+  .catch((error) => {
+    console.error("Error retrieving employee names:", error);
+    start();
   });
 }
 
