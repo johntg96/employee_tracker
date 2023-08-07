@@ -174,11 +174,11 @@ function promptForEmployeeDetails() {
       name: 'managerId'
     },
   ]).then(async (userInput) => {
-    const { employeeFirstName, employeeLastName, managerId,  departmentId } = userInput;
+    const { employeeFirstName, employeeLastName, occupationId,  departmentId } = userInput;
 
     try {
       // function addEmployee(firstName, lastName, occupation_id, department_id)
-      await addEmployee(employeeFirstName, employeeLastName, managerId, departmentId);
+      await addEmployee(employeeFirstName, employeeLastName, occupationId, departmentId);
       console.log(`New employee "${employeeFirstName} ${employeeLastName}" data added to the database successfully!`);
       start();
     } catch (error) {
