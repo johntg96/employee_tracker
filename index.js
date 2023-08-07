@@ -1,5 +1,7 @@
 const inquirer = require("inquirer");
 const outputCyanText = (text) => console.log(`\x1b[36m${text}\x1b[0m`);
+const outputRedText = (text) => console.log(`\x1b[31m${text}\x1b[0m`);
+const outputOrangeText = (text) => console.log(`\x1b[38;5;208m${text}\x1b[0m`);
 const connection = require("./config/connection");
 const { displayData } = require("./lib/displays");
 const { listAllDepartments, 
@@ -111,7 +113,7 @@ function promptForDepartmentDetails() {
 
     try {
       await addDepartment(departmentName);
-      outputCyanText(`\nNew department "${departmentName}" added to the database successfully!\n`);
+      outputOrangeText(`\nNew department "${departmentName}" added to the database successfully!\n`);
       start();
     } catch (error) {
       console.error(error);
@@ -143,7 +145,7 @@ function promptForOccupationDetails() {
 
     try {
       await addOccupation(occupationTitle, salary, departmentId);
-      outputCyanText(`\nNew role "${occupationTitle}" added to the database successfully!\n`);
+      outputOrangeText(`\nNew role "${occupationTitle}" added to the database successfully!\n`);
       start();
     } catch (error) {
       console.error(error);
@@ -181,7 +183,7 @@ function promptForEmployeeDetails() {
     try {
       // function addEmployee(firstName, lastName, occupation_id, department_id)
       await addEmployee(employeeFirstName, employeeLastName, occupationId, departmentId);
-      outputCyanText(`\nNew employee "${employeeFirstName} ${employeeLastName}" added to the database successfully!\n`);
+      outputOrangeText(`\nNew employee "${employeeFirstName} ${employeeLastName}" added to the database successfully!\n`);
       start();
     } catch (error) {
       console.error(error);
@@ -242,7 +244,7 @@ function promptForUpdatingEmployeeOccupation() {
 
           // The new role is added here, notice the second arg is being parsed for int from choices array:
           await updateEmployeeOccupation(userChoice.employeeId.employeeId, parseInt(Array.from(userChoice.occupationId)[0]));
-          outputCyanText(`\nEmployee role (occupation) updated!\n`);
+          outputOrangeText(`\nEmployee role (occupation) updated!\n`);
           start();
         } catch (error) {
           console.error(error);
