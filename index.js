@@ -197,7 +197,7 @@ function promptForEmployeeDetails() {
 function promptForUpdatingEmployeeOccupation() {
   getEmployeeNames()
   .then((employeeNames) => {
-    console.log('Employee Names:', employeeNames);
+    // console.log('Employee Names:', employeeNames);
     if (!employeeNames || employeeNames.length === 0) {
       console.log("No employees found. Nothing to update.");
       start();
