@@ -1,6 +1,4 @@
 const inquirer = require("inquirer");
-const { EventEmitter } = require('events');
-EventEmitter.defaultMaxListeners = 15;
 const outputCyanText = (text) => console.log(`\x1b[36m${text}\x1b[0m`);
 const connection = require("./config/connection");
 const { displayData } = require("./lib/displays");
@@ -109,7 +107,7 @@ function promptForDepartmentDetails() {
 
     try {
       await addDepartment(departmentName);
-      console.log(`New department "${departmentName}" added to the database successfully!`);
+      outputCyanText(`\nNew department "${departmentName}" added to the database successfully!\n`);
       start();
     } catch (error) {
       console.error(error);
@@ -141,7 +139,7 @@ function promptForOccupationDetails() {
 
     try {
       await addOccupation(occupationTitle, salary, departmentId);
-      console.log(`New role "${occupationTitle}" data added to the database successfully!`);
+      outputCyanText(`\nNew role "${occupationTitle}" data added to the database successfully!\n`);
       start();
     } catch (error) {
       console.error(error);
@@ -179,7 +177,7 @@ function promptForEmployeeDetails() {
     try {
       // function addEmployee(firstName, lastName, occupation_id, department_id)
       await addEmployee(employeeFirstName, employeeLastName, occupationId, departmentId);
-      console.log(`New employee "${employeeFirstName} ${employeeLastName}" data added to the database successfully!`);
+      outputCyanText(`\nNew employee "${employeeFirstName} ${employeeLastName}" data added to the database successfully!\n`);
       start();
     } catch (error) {
       console.error(error);
