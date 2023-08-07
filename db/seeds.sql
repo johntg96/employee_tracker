@@ -1,7 +1,7 @@
 USE employees_db;
 
 INSERT INTO department (name)
-VALUES  ("Management"),               -- 1
+VALUES  ("Super Science"),            -- 1
         ("Quality Control"),          -- 2
         ("Production"),               -- 3
         ("Maintenance"),              -- 4
@@ -21,9 +21,9 @@ VALUES  ("Director", 1000000, 1),         -- 1
 
 INSERT INTO employee (first_name, last_name, occupation_id, department_id)
 VALUES  ("Rob", "Rogers", 1, 1), -- 1
-        ("Mary", "Jade", 4, 1),     -- 2
-        ("Joe", "Blue", 6, 1),      -- 3
-        ("John", "Doe", 2, 6),   -- 4
-        ("Sarah", "Smith", 3, 2),   -- 5
-        ("Jeremy", "Dublin", 7, 1), -- 6
-        ("Jake", "Porter", 3, 6);   -- 7
+        ("Mary", "Jade", 2, 7),     -- 2
+        ("Joe", "Blue", 5, 5),      -- 3
+        ("John", "Doe", 4, 1),   -- 4
+        ("Sarah", "Smith", 6, 6),   -- 5
+        ("Jeremy", "Dublin", 7, 8), -- 6
+        ("Jake", "Porter", 3, 4);   -- 7
