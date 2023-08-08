@@ -2,7 +2,6 @@ const inquirer = require("inquirer");
 const outputCyanText = (text) => console.log(`\x1b[36m${text}\x1b[0m`);
 const outputRedText = (text) => console.log(`\x1b[31m${text}\x1b[0m`);
 const outputOrangeText = (text) => console.log(`\x1b[38;5;208m${text}\x1b[0m`);
-const connection = require("./config/connection");
 const { displayData } = require("./lib/displays");
 const { listAllDepartments, 
         listAllOccupations,

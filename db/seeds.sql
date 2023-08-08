@@ -19,11 +19,18 @@ VALUES  ("Director", 1000000, 1),         -- 1
         ("Master Inspector", 55000, 2),   -- 6
         ("Supervisor", 85500, 1);         -- 7
 
-INSERT INTO employee (first_name, last_name, occupation_id, department_id)
-VALUES  ("Rob", "Rogers", 1, 1), -- 1
-        ("Mary", "Jade", 2, 7),     -- 2
-        ("Joe", "Blue", 5, 5),      -- 3
-        ("John", "Doe", 4, 1),   -- 4
-        ("Sarah", "Smith", 6, 6),   -- 5
-        ("Jeremy", "Dublin", 7, 8), -- 6
-        ("Jake", "Porter", 3, 4);   -- 7
+
+INSERT INTO manager (first_name, last_name)
+VALUES
+  ("Joe", "Dirt"),  -- 1
+  ("Keith", "McCluck"),  -- 2
+  ("Jessica", "Anderson"); -- 3
+
+INSERT INTO employee (first_name, last_name, manager_id, occupation_id, department_id)
+VALUES  ("Rob", "Rogers", 1, 1, 1), -- 1
+        ("Mary", "Jade", 2, 2, 7),     -- 2
+        ("Joe", "Blue", 3, 5, 5),      -- 3
+        ("John", "Doe", 1, 4, 1),   -- 4
+        ("Sarah", "Smith", 2, 6, 6),   -- 5
+        ("Jeremy", "Dublin", 1, 7, 8), -- 6
+        ("Jake", "Porter", 2, 3, 4);   -- 7

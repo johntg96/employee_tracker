@@ -22,13 +22,22 @@ CREATE TABLE occupation (
   FOREIGN KEY (department_id) REFERENCES department(id)
 );
 
+-- Create the manager table.
+CREATE TABLE manager (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(30),
+  last_name VARCHAR(30)
+);
+
 -- Create the employee table.
 CREATE TABLE employee (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30),
   last_name VARCHAR(30),
+  manager_id INT,
   occupation_id INT,
   department_id INT DEFAULT NULL,
+  FOREIGN KEY (manager_id) REFERENCES manager(id),
   FOREIGN KEY (occupation_id) REFERENCES occupation(id),
   FOREIGN KEY (department_id) REFERENCES department(id)
 );
